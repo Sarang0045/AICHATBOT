@@ -284,13 +284,20 @@ function App() {
         client_id: clientId,
         callback: async (response) => {
           try {
+            console.log("📤 Sending Google token to backend...");
             const data = await authGoogle(response.credential);
+            console.log("✅ Google auth success:", data);
             saveIdentity(data);
             setMessages([]);
             setError("");
-          } catch {
-            setError("Google sign-in failed. Check backend and client ID.");
+          } catch (err) {
+            console.error("❌ Google sign-in failed:", err);
+            setError(`Google auth failed: ${err.message || "Check backend console"}`);
           }
+        },
+        error_callback: (error) => {
+          console.error("❌ Google Sign-In error callback:", error);
+          setError("Google Sign-In failed: " + (error.type || "Unknown error"));
         },
       });
 

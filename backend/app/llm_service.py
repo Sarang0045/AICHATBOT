@@ -1,5 +1,7 @@
 import json
 import logging
+from pathlib import Path
+import ssl
 import urllib.error
 import urllib.request
 
@@ -32,6 +34,24 @@ def _history_text(history: list[dict], limit: int = 6) -> str:
 logger = logging.getLogger(__name__)
 
 
+def _build_ssl_context() -> ssl.SSLContext | None:
+    """Build an explicit SSL context to avoid local trust-store issues."""
+    try:
+        import certifi  # type: ignore
+
+        return ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        bundled_ca = Path(__file__).resolve().parents[1] / "cacert.pem"
+        if bundled_ca.exists():
+            logger.info("Using bundled CA bundle: %s", bundled_ca)
+            return ssl.create_default_context(cafile=str(bundled_ca))
+
+        logger.warning(
+            "certifi not installed and no bundled CA found; using system certificate store",
+        )
+        return None
+
+
 def _openai_chat_completion(messages: list[dict[str, str]]) -> str:
     if not settings.llm_api_key:
         raise RuntimeError("LLM API key is missing")
@@ -51,11 +71,13 @@ def _openai_chat_completion(messages: list[dict[str, str]]) -> str:
         },
         method="POST",
     )
+    ssl_context = _build_ssl_context()
 
     try:
         with urllib.request.urlopen(
             request,
             timeout=settings.llm_timeout_seconds,
+            context=ssl_context,
         ) as response:
             data = json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:

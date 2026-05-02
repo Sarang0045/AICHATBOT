@@ -68,21 +68,21 @@ AICHATBOT/
 
 ### Prerequisites
 
-- Python 3.8+ (backend)
+- **Python 3.12** (backend - required for compatible FastAPI dependencies)
 - Node.js 16+ (frontend)
-- MongoDB (optional, for persistent storage)
-- OpenAI API key (optional, for LLM features)
+- MongoDB (optional, for persistent conversation storage)
+- OpenAI API key (optional, for LLM response generation)
 
 ### Backend Setup
 
 ```bash
-cd backend
-python -m venv .venv
-source .venv/bin/activate  
-pip install -r app/requirements.txt
+# Use Python 3.12 for this project
+python3.12 -m venv .venv312
+source .venv312/bin/activate
+.venv312/bin/python -m pip install -r backend/app/requirements.txt
 
-# Run FastAPI server
-uvicorn app.main:app --reload
+cd backend
+../.venv312/bin/uvicorn app.main:app --reload --port 8000
 ```
 
 Backend runs at `http://127.0.0.1:8000`
@@ -161,18 +161,49 @@ All data files are in `backend/data/`:
 
 ## 🔐 Environment Variables
 
-Create `.env` or set in deployment platform:
+### Backend `.env` (optional - sensible defaults included)
 
-```
-# Backend
-OPENAI_API_KEY=sk-...           # For LLM (optional)
-OPENAI_API_BASE=https://...     # LLM endpoint (optional)
-MONGODB_URI=mongodb://...       # MongoDB connection (optional)
-STORAGE_TYPE=memory             # or "mongodb"
+````env
+# MongoDB Configuration (optional - without it, uses in-memory storage)
+MONGO_URL=mongodb://localhost:27017
+MONGO_DATABASE=chatbot_db
+MONGO_COLLECTION=conversations
 
-# Frontend
-VITE_API_URL=http://127.0.0.1:8000
-```
+# Intent Detection Model
+INTENT_MODEL_CONFIDENCE_THRESHOLD=0.58
+
+# RAG Configuration
+RAG_TOP_K=3
+RAG🧪 Testing & Validation
+
+```bash
+# Check backend code
+.venv312/bin/python -m compileall backend/app
+
+# Build frontend
+cd frontend && npm run build
+````
+
+### Test Messages to Try
+
+- `hello` - Basic greeting
+- `what is your refund policy?` - Knowledge base retrieval
+- `how long does delivery take?` - RAG + template response
+- `I am angry about my order` - Sentiment analysis
+- `नमस्ते` - Multi-language support
+
+## 🔗 Google OAuth Setup (Optional)
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project and enable Google+ API
+3. Create OAuth 2.0 Client ID (Web application type)
+4. Add Authorized JavaScript origins:
+   - `http://localhost:5173`
+   - `http://127.0.0.1:5173`
+5. Add Authorized redirect URIs (same as above)
+6. Copy the Client ID to `.env` files:
+   - Backend: `GOOGLE_CLIENT_ID`
+   - Frontend: `VITE_GOOGLE_CLIENT_ID`
 
 ## 📦 Deployment Options
 
@@ -184,6 +215,34 @@ VITE_API_URL=http://127.0.0.1:8000
 cd frontend
 vercel deploy
 ```
+
+**Backend (Railway)**
+
+- Connect GitHub repo to Railway
+- Set `VITE_API_URL` environment variable in Vercel
+- Set backend env vars (OpenAI key, MongoDB, etc.) in Railway
+
+### Alternative Platforms
+
+- **All-in-one**: PythonAnywhere (backend) + Netlify (frontend)
+- **Docker**: Fly.io, Railway, Render
+- **Production**: AWS (CloudFront + S3 for frontend, App Runner for backend) if not configured)
+  VITE_GOOGLE_CLIENT_ID=your_google_client_id
+
+````
+
+**Note:** Without MongoDB, conversations are stored in memory (lost on restart). Without LLM API, responses still work via local ML, RAG, and templates.
+
+## 📦 Deployment Options
+
+### Recommended: Vercel + Railway
+
+**Frontend (Vercel)**
+
+```bash
+cd frontend
+vercel deploy
+````
 
 **Backend (Railway)**
 
@@ -251,6 +310,9 @@ For issues or questions, please open a GitHub issue.
 ---
 
 **Last Updated:** May 2, 2026
+
 # AICHATBOT
+
 # AICHATBOT
+
 # CHATBOTAI

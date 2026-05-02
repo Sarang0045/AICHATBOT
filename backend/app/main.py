@@ -1,4 +1,6 @@
 import json
+from pathlib import Path
+import ssl
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -45,6 +47,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Validation on startup
+if not settings.google_client_id:
+    print("⚠️  WARNING: GOOGLE_CLIENT_ID not configured. Google Sign-In will not work.")
+else:
+    print(f"✅ Google OAuth configured: {settings.google_client_id[:30]}...")
 
 
 @app.get("/")
@@ -174,52 +182,123 @@ def guest_auth() -> AuthResponse:
     )
 
 
-def _verify_google_token(id_token: str) -> dict:
-    query = urllib.parse.urlencode({"id_token": id_token})
+def _verify_google_token(token: str) -> dict:
+    """Verify Google ID token using Google's tokeninfo endpoint"""
+    print(f"🔍 Verifying Google token (length: {len(token)})")
+
+    query = urllib.parse.urlencode({"id_token": token})
     request = urllib.request.Request(
         f"https://oauth2.googleapis.com/tokeninfo?{query}",
         method="GET",
     )
 
+    # Use certifi's CA bundle to avoid local trust-store issues on some macOS setups.
+    ssl_context = None
     try:
-        with urllib.request.urlopen(request, timeout=8) as response:
-            return json.loads(response.read().decode("utf-8"))
-    except (OSError, urllib.error.URLError, json.JSONDecodeError) as exc:
+        import certifi  # type: ignore
+
+        ssl_context = ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        bundled_ca = Path(__file__).resolve().parents[1] / "cacert.pem"
+        if bundled_ca.exists():
+            ssl_context = ssl.create_default_context(cafile=str(bundled_ca))
+            print(f"ℹ️ Using bundled CA bundle: {bundled_ca}")
+        else:
+            print("⚠️ certifi not installed and no bundled CA found; falling back to system certificate store")
+
+    try:
+        with urllib.request.urlopen(request, timeout=8, context=ssl_context) as response:
+            info = json.loads(response.read().decode("utf-8"))
+            print(f"✅ Token verified. Info keys: {list(info.keys())}")
+            return info
+    except urllib.error.HTTPError as exc:
+        print(f"❌ HTTP Error {exc.code}: {exc.read().decode('utf-8')}")
         raise HTTPException(
             status_code=401,
-            detail="Invalid or expired Google ID token",
+            detail=f"Google token verification failed (HTTP {exc.code})",
+        ) from exc
+    except (OSError, urllib.error.URLError) as exc:
+        print(f"❌ Network error: {exc}")
+        raise HTTPException(
+            status_code=401,
+            detail="Google token verification failed: network error",
+        ) from exc
+    except json.JSONDecodeError as exc:
+        print(f"❌ JSON decode error: {exc}")
+        raise HTTPException(
+            status_code=401,
+            detail="Google token verification failed: invalid response",
         ) from exc
 
 
 @app.post("/auth/google", response_model=AuthResponse)
 def google_auth(payload: dict = Body(...)) -> AuthResponse:
+    """Google OAuth endpoint - expects {"id_token": "..."} in request body"""
+    print(f"📨 /auth/google called. Payload keys: {list(payload.keys())}")
+    
+    # Get token from either id_token or credential field
     id_token = payload.get("id_token") or payload.get("credential")
     if not id_token:
-        raise HTTPException(status_code=400, detail="Missing id_token in request body")
+        print(f"❌ No token found in payload")
+        raise HTTPException(
+            status_code=400,
+            detail="Missing id_token or credential in request body",
+        )
 
-    info = _verify_google_token(str(id_token))
+    print(f"🔐 Token received (length: {len(str(id_token))})")
+
+    # Verify token with Google
+    try:
+        info = _verify_google_token(str(id_token))
+    except HTTPException as exc:
+        print(f"❌ Token verification failed: {exc.detail}")
+        raise
+
+    # Extract fields
     sub = info.get("sub")
     email = info.get("email")
     email_verified = info.get("email_verified")
     audience = info.get("aud")
+    name = info.get("name")
+    picture = info.get("picture")
 
-    if settings.google_client_id and audience != settings.google_client_id:
+    print(f"📋 Token info - sub: {sub}, email: {email}, verified: {email_verified}, aud: {audience}")
+
+    # Validate email is verified
+    if str(email_verified).lower() != "true":
+        print(f"❌ Email not verified: {email_verified}")
         raise HTTPException(
             status_code=401,
-            detail="Google token audience does not match this app",
+            detail="Google account email is not verified",
         )
 
-    if not sub or not email or str(email_verified).lower() != "true":
+    # Validate required fields
+    if not sub or not email:
+        print(f"❌ Missing required fields: sub={sub}, email={email}")
         raise HTTPException(
             status_code=401,
-            detail="Google account not verified or missing information",
+            detail="Google account missing required information",
         )
+
+    # Validate audience matches (if configured)
+    if settings.google_client_id:
+        print(f"🔒 Checking audience: token has '{audience}', backend expects '{settings.google_client_id}'")
+        if audience != settings.google_client_id:
+            print(f"❌ AUDIENCE MISMATCH!")
+            raise HTTPException(
+                status_code=401,
+                detail=f"Token audience mismatch. Expected {settings.google_client_id}, got {audience}",
+            )
+    else:
+        print(f"⚠️  GOOGLE_CLIENT_ID not configured - skipping audience validation")
+
+    print(f"✅ Google auth successful for {email}")
 
     return AuthResponse(
         user_id=f"google:{sub}",
         email=str(email),
-        name=info.get("name"),
-        picture=info.get("picture"),
+        name=name,
+        picture=picture,
         session_id=f"session_{uuid4().hex}",
         auth_provider="google",
     )
