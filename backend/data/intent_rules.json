@@ -1,0 +1,8 @@
+{
+  "greeting": ["hello", "hi", "hey", "good morning", "good evening"],
+  "goodbye": ["bye", "goodbye", "see you", "talk later"],
+  "order_status": ["order", "track", "package", "delivery", "shipment"],
+  "refund_request": ["refund", "return", "money back", "replace"],
+  "thanks": ["thanks", "thank you", "thx"],
+  "help": ["help", "support", "problem", "issue"]
+}

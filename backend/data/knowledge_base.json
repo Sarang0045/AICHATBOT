@@ -1,0 +1,262 @@
+[
+  {
+    "id": "refund_policy",
+    "title": "Refund Policy"
+  },
+  {
+    "id": "preorder_info",
+    "title": "Preorder Information",
+    "content": "Preorders ship on the listed release date. You will receive a tracking update once the item dispatches."
+  },
+  {
+    "id": "order_confirmation",
+    "title": "Order Confirmation",
+    "content": "Order confirmation emails are sent within 5 minutes. Check spam or promotions folders if you do not see it."
+  },
+  {
+    "id": "tracking_not_updating",
+    "title": "Tracking Not Updating",
+    "content": "Tracking updates may pause for 24 hours while carriers process scans. If there is no update after 48 hours, contact support."
+  },
+  {
+    "id": "delivery_attempt",
+    "title": "Failed Delivery Attempt",
+    "content": "If a delivery attempt fails, the carrier will retry on the next business day. Ensure the delivery address and phone number are correct."
+  },
+  {
+    "id": "signature_required",
+    "title": "Signature Required",
+    "content": "Some high-value orders require a signature on delivery. If you are unavailable, contact the carrier to reschedule."
+  },
+  {
+    "id": "return_pickup",
+    "title": "Return Pickup",
+    "content": "Return pickups are available in select locations. Provide the order ID and preferred pickup time window."
+  },
+  {
+    "id": "exchange_policy",
+    "title": "Exchange Policy",
+    "content": "Exchanges are allowed within 7 days for eligible items. Share the order ID and the replacement item or size."
+  },
+  {
+    "id": "gift_card",
+    "title": "Gift Cards",
+    "content": "Gift cards are delivered by email and can be redeemed at checkout. Gift cards are non-refundable."
+  },
+  {
+    "id": "wallet_refund",
+    "title": "Wallet Refunds",
+    "content": "Wallet refunds are credited within 24 hours after approval. You can use the wallet balance on your next purchase."
+  },
+  {
+    "id": "upi_refund",
+    "title": "UPI Refunds",
+    "content": "UPI refunds are processed to the same UPI ID used at checkout. Bank processing may take 1 to 3 business days."
+  },
+  {
+    "id": "bank_chargeback",
+    "title": "Chargebacks",
+    "content": "If a chargeback is initiated, order investigations may pause. Contact support to resolve disputes before filing a chargeback."
+  },
+  {
+    "id": "taxes_and_gst",
+    "title": "Taxes and GST",
+    "content": "Invoices include applicable taxes. If you need GST details on the invoice, share your billing information with support."
+  },
+  {
+    "id": "loyalty_points",
+    "title": "Loyalty Points",
+    "content": "Loyalty points are credited after delivery. Points can be used on future orders and may expire after 90 days."
+  },
+  {
+    "id": "coupon_expiry",
+    "title": "Coupon Expiry",
+    "content": "Coupons expire at 11:59 PM local time on the listed end date. Expired coupons cannot be reactivated."
+  },
+  {
+    "id": "size_guide",
+    "title": "Size Guide",
+    "content": "Use the size guide on each product page. If you need help, share your measurements and item name."
+  },
+  {
+    "id": "product_care",
+    "title": "Product Care",
+    "content": "Care instructions are listed on the product page or label. If you cannot find them, share the product name for guidance."
+  },
+  {
+    "id": "account_deletion",
+    "title": "Account Deletion",
+    "content": "Account deletion requests are processed within 7 business days. Pending orders must be completed before deletion."
+  },
+  {
+    "id": "security_verification",
+    "title": "Security Verification",
+    "content": "Some requests require identity verification to protect accounts. Support may ask for order details or last 4 digits of the card."
+  },
+  {
+    "id": "product_availability",
+    "title": "Product Availability",
+    "content": "Availability varies by location and warehouse stock. Share your city or postal code to check eligibility."
+  },
+  {
+    "id": "store_credit",
+    "title": "Store Credit",
+    "content": "Store credit is issued for eligible returns if requested. Store credit does not expire and can be used on any item."
+  },
+  {
+    "id": "holiday_delays",
+    "title": "Holiday Delays",
+    "content": "During holidays, delivery times may extend by 2 to 4 business days. We recommend ordering early for time-sensitive gifts."
+  },
+  {
+    "id": "packaging",
+    "title": "Packaging",
+    "content": "Orders are shipped in protective packaging. Gift wrapping is not available unless stated on the product page."
+  },
+  {
+    "id": "support_contact",
+    "title": "Contact Support",
+    "content": "To contact support, share your order ID, issue summary, and preferred contact method. Response times are typically within 24 hours."
+  },
+  {
+    "id": "delivery_tracking",
+    "title": "Delivery Tracking",
+    "content": "Customers can track orders using an order ID such as ORD12345. Most orders are delivered within 3 to 5 business days after shipping."
+  },
+  {
+    "id": "support_hours",
+    "title": "Support Hours",
+    "content": "Customer support is available Monday to Saturday from 9 AM to 6 PM. Support is closed on major public holidays."
+  },
+  {
+    "id": "replacement_policy",
+    "title": "Replacement Policy",
+    "content": "Product replacements are available for damaged, defective, or incorrect items. Customers should provide an order ID and a short description of the issue."
+  },
+  {
+    "id": "payment_help",
+    "title": "Payment Help",
+    "content": "If payment fails but money is deducted, customers should wait 24 hours. If the money is not reversed, they should contact support with the transaction ID."
+  },
+  {
+    "id": "order_cancellation",
+    "title": "Order Cancellation",
+    "content": "Orders can be canceled within 1 hour of placement. After that, cancellation depends on whether the order has shipped. Provide the order ID to check eligibility."
+  },
+  {
+    "id": "address_change",
+    "title": "Change Delivery Address",
+    "content": "Address updates are possible before the order ships. Share the order ID and the new address details to request a change."
+  },
+  {
+    "id": "shipping_fees",
+    "title": "Shipping Fees",
+    "content": "Standard shipping is free on orders above $50. Orders below $50 have a flat shipping fee of $4.99."
+  },
+  {
+    "id": "express_shipping",
+    "title": "Express Shipping",
+    "content": "Express shipping delivers in 1 to 2 business days after dispatch. Availability depends on the destination and inventory."
+  },
+  {
+    "id": "international_shipping",
+    "title": "International Shipping",
+    "content": "International shipping is available to select countries. Delivery times range from 7 to 14 business days, and customs duties may apply."
+  },
+  {
+    "id": "order_delay",
+    "title": "Order Delays",
+    "content": "Delays can happen due to high demand or carrier issues. If your order is past the expected delivery window, contact support with your order ID."
+  },
+  {
+    "id": "missing_items",
+    "title": "Missing Items",
+    "content": "If an order arrives with missing items, contact support within 48 hours. Provide the order ID and list of missing items."
+  },
+  {
+    "id": "damaged_items",
+    "title": "Damaged Items",
+    "content": "Report damaged items within 7 days of delivery. Include the order ID and photos of the damage for a faster review."
+  },
+  {
+    "id": "wrong_item",
+    "title": "Wrong Item Received",
+    "content": "If you received the wrong item, share your order ID and a short description of what arrived. We will arrange a replacement or refund."
+  },
+  {
+    "id": "return_policy",
+    "title": "Return Policy",
+    "content": "Returns are accepted within 7 days of delivery for unused items in original packaging. Provide the order ID and reason for return."
+  },
+  {
+    "id": "refund_timeline",
+    "title": "Refund Timeline",
+    "content": "Refunds are processed within 3 to 5 business days after approval. Banks may take additional time to reflect the amount."
+  },
+  {
+    "id": "partial_refund",
+    "title": "Partial Refunds",
+    "content": "Partial refunds may apply for discounted bundles, missing accessories, or items returned in used condition. Support will confirm the final amount."
+  },
+  {
+    "id": "promo_codes",
+    "title": "Promo Codes",
+    "content": "Promo codes apply at checkout and cannot be combined unless stated. If a code fails, verify expiration and cart eligibility."
+  },
+  {
+    "id": "invoice_request",
+    "title": "Invoice Request",
+    "content": "Invoices are available after shipment. Request an invoice by sharing your order ID and billing name."
+  },
+  {
+    "id": "payment_methods",
+    "title": "Payment Methods",
+    "content": "We accept major credit cards, debit cards, and UPI. Cash on delivery is available for select locations."
+  },
+  {
+    "id": "cod_details",
+    "title": "Cash on Delivery",
+    "content": "Cash on delivery is available for orders under $200. Keep exact change ready; carrier fees may apply in some areas."
+  },
+  {
+    "id": "account_help",
+    "title": "Account Help",
+    "content": "If you cannot sign in, reset your password using the email on file. For account changes, contact support with your registered email."
+  },
+  {
+    "id": "privacy_policy",
+    "title": "Privacy Policy",
+    "content": "We use your contact details only for order updates and support. Payment details are processed by secure gateways and are not stored."
+  },
+  {
+    "id": "warranty_info",
+    "title": "Warranty Information",
+    "content": "Warranty coverage varies by product. Provide the order ID and product name to check warranty eligibility."
+  },
+  {
+    "id": "subscription_pause",
+    "title": "Subscription Pause",
+    "content": "Subscriptions can be paused once per month. Provide the subscription ID and the desired pause dates."
+  },
+  {
+    "id": "subscription_cancel",
+    "title": "Subscription Cancellation",
+    "content": "Subscriptions can be canceled at any time before the next billing cycle. The current cycle remains active until its end."
+  },
+  {
+    "id": "gift_orders",
+    "title": "Gift Orders",
+    "content": "Gift messages can be added during checkout. If you missed it, contact support quickly with your order ID."
+  },
+  {
+    "id": "bulk_orders",
+    "title": "Bulk Orders",
+    "content": "For bulk or corporate orders, share your item list and quantity. Support will confirm pricing and timelines."
+  },
+  {
+    "id": "out_of_stock",
+    "title": "Out of Stock Items",
+    "content": "Out of stock items may be restocked within 7 to 14 days. You can request a restock alert by contacting support."
+  }
+]
+

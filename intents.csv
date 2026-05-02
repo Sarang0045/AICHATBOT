@@ -1,0 +1,49 @@
+text,intent
+hello,greeting
+hi,greeting
+hey there,greeting
+good morning,greeting
+good evening,greeting
+hello can you help me,greeting
+hi chatbot,greeting
+hey I need assistance,greeting
+bye,goodbye
+goodbye,goodbye
+see you later,goodbye
+talk to you later,goodbye
+thanks bye,goodbye
+I am leaving now,goodbye
+end this chat,goodbye
+have a nice day,goodbye
+where is my order,order_status
+track my order,order_status
+what is my delivery status,order_status
+where is my package,order_status
+track shipment,order_status
+has my order shipped,order_status
+delivery update please,order_status
+can you check my package,order_status
+I want a refund,refund_request
+refund my money,refund_request
+I need to return this product,refund_request
+how do I get my money back,refund_request
+start a refund,refund_request
+I want to replace my item,refund_request
+return my order,refund_request
+this item is damaged refund it,refund_request
+thank you,thanks
+thanks,thanks
+thanks a lot,thanks
+thank you so much,thanks
+that helped thanks,thanks
+appreciate your help,thanks
+many thanks,thanks
+great thanks,thanks
+help me,help
+I need help,help
+can you support me,help
+I have a problem,help
+there is an issue,help
+please assist me,help
+support needed,help
+can someone help,help

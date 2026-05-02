@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "pydantic": "^0.0.1-security",
+    "pymongo": "^0.0.1-security"
+  }
+}

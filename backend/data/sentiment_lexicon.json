@@ -1,0 +1,29 @@
+{
+  "positive": [
+    "good",
+    "great",
+    "awesome",
+    "excellent",
+    "happy",
+    "helpful",
+    "thanks",
+    "thank",
+    "love",
+    "perfect"
+  ],
+  "negative": [
+    "bad",
+    "angry",
+    "upset",
+    "hate",
+    "terrible",
+    "worst",
+    "broken",
+    "damaged",
+    "late",
+    "delay",
+    "problem",
+    "issue",
+    "frustrated"
+  ]
+}

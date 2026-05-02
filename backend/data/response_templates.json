@@ -1,0 +1,20 @@
+{
+  "default_intent": "unknown",
+  "intents": {
+    "greeting": "Hello! How can I help you today?",
+    "goodbye": "Goodbye! Have a great day.",
+    "order_status": "I can help you track your order. Please share your order ID.",
+    "refund_request": "I can help with refunds. Please share your order ID and the reason for the refund.",
+    "thanks": "You're welcome!",
+    "help": "I am here to help. You can ask about order tracking, refunds, or general support.",
+    "unknown": "I am not fully sure I understood. Could you explain that in a little more detail?"
+  },
+  "contextual": {
+    "order_reference_received": "Thanks. I found your order reference in '{message}'. Your order is being checked now.",
+    "refund_reference_received": "Thanks. I found your order reference in '{message}'. I will start the refund review process."
+  },
+  "rag": {
+    "grounded_answer": "{answer}",
+    "needs_more_detail": "I found related information in {sources}, but I need a little more detail to answer confidently."
+  }
+}

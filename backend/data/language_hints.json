@@ -1,0 +1,22 @@
+{
+  "hi": {
+    "name": "Hindi",
+    "hints": ["namaste", "mera", "kaha", "hai", "dhanyavad", "madad"],
+    "unicode_ranges": [["0900", "097F"]]
+  },
+  "es": {
+    "name": "Spanish",
+    "hints": ["hola", "gracias", "pedido", "ayuda", "reembolso"],
+    "unicode_ranges": []
+  },
+  "fr": {
+    "name": "French",
+    "hints": ["bonjour", "merci", "commande", "aide", "remboursement"],
+    "unicode_ranges": []
+  },
+  "en": {
+    "name": "English",
+    "hints": [],
+    "unicode_ranges": []
+  }
+}
