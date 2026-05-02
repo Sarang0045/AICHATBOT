@@ -87,6 +87,8 @@ cd backend
 
 Backend runs at `http://127.0.0.1:8000`
 
+Render deployment should also use Python 3.12 via a `runtime.txt` file at the service root.
+
 ### Frontend Setup
 
 ```bash
